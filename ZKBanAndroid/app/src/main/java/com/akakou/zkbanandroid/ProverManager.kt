@@ -1,15 +1,17 @@
 package com.akakou.zkbanandroid
 
 import com.akakou.proverkit.AbstractProverManager
+import com.akakou.zkbanandroid.store.AppDatabase
+import com.akakou.zkbanandroid.store.AuthLogDao
 
-val manager = ProverManager()
+var manager: ProverManager? = null
 
-class ProverManager: AbstractProverManager() {
+class ProverManager(val db : AppDatabase): AbstractProverManager() {
     override fun createProver(uri: android.net.Uri): Prover {
-        return Prover(uri)
+        return Prover(db, uri)
     }
 
-    override fun register(): Unit {
+    override suspend fun register(): Unit {
 
     }
 }
