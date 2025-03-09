@@ -56,11 +56,6 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.ui.auth)
 
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.common)
-
     implementation(libs.zxing.android.embedded)
     implementation(files("../../../proverkit-android/app/build/outputs/aar/app-debug.aar"))
 
