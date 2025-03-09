@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ZKBanAndroid</string>
+    <string name="title_activity_prover">ProverActivity</string>
 </resources>
