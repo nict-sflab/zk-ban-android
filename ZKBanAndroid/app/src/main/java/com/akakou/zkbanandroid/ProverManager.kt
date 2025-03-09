@@ -1,15 +1,15 @@
 package com.akakou.zkbanandroid
 
+import android.content.SharedPreferences
 import com.akakou.proverkit.AbstractProverManager
 
-val manager = ProverManager()
+var manager: ProverManager? = null
 
-class ProverManager: AbstractProverManager() {
+class ProverManager(val preference : SharedPreferences): AbstractProverManager() {
     override fun createProver(uri: android.net.Uri): Prover {
-        return Prover(uri)
+        return Prover(uri, preference)
     }
 
-    override fun register(): Unit {
-
+    override suspend fun register(): Unit {
     }
 }
