@@ -40,5 +40,5 @@ func sign(message []byte, count int64, signer []byte, gpk []byte, prover []byte)
 		&proverObj,
 	)
 
-	return signature, nil
+	return signature, err
 }
