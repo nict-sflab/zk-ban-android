@@ -25,17 +25,18 @@ class MainActivity : ComponentActivity() {
 
         try {
             val signer = Zkbancrypto.requestJoin("idToken", "http://localhost:8080/issue-credential")
-            Toast.makeText(this@MainActivity, signer.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MainActivity, signer.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
 
             val gpk = Zkbancrypto.fetchGroupPublicKey("http://localhost:8080/group-public-key")
-            Toast.makeText(this@MainActivity, gpk.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MainActivity, gpk.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
 
             val sign = Zkbancrypto.sign("msg".toByteArray(Charsets.UTF_8) , 1, signer, gpk)
-            Toast.makeText(this@MainActivity, sign.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MainActivity, sign.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
 
             val rl = Zkbancrypto.fetchRevocationList("http://localhost:8080/revocation-list")
-            Toast.makeText(this@MainActivity, rl.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
+            Toast.makeText(this@MainActivity, rl.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
 
+            Zkbancrypto.setConstantPeriodForDebug(10)
             Thread.sleep(5000)
 
             val update = Zkbancrypto.requestUpdate(signer, rl, gpk, "http://localhost:8080/update-credential" )

@@ -6,6 +6,7 @@ import (
 
 	client "github.com/akakou/zk-ban-system/client/signer"
 	coresigner "github.com/akakou/zk-ban-system/core/signer"
+	"github.com/akakou/zk-ban-system/utils"
 )
 
 //go:embed join_prover.json
@@ -49,4 +50,12 @@ func FetchGroupPublicKey(url string) ([]byte, error) {
 
 func FetchRevocationList(url string) ([]byte, error) {
 	return client.FetchRevocationList(url)
+}
+
+func SetConstantPeriodForDebug(i int) {
+	today := func() int64 {
+		return int64(i)
+	}
+
+	utils.Today = today
 }
