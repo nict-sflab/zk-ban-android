@@ -18,7 +18,7 @@ func main() {
 		fmt.Printf("failed to generate join keys")
 	}
 
-	err = os.WriteFile("./join_verify.json", joinVerify, 0644)
+	err = os.WriteFile("./join_verifier.json", joinVerify, 0644)
 	if err != nil {
 		fmt.Printf("failed to generate join keys")
 	}
