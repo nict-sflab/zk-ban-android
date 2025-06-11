@@ -14,6 +14,9 @@ var JoinProver []byte
 //go:embed sign_prover.json
 var SignProver []byte
 
+//go:embed update_prover.json
+var UpdateProver []byte
+
 func RequestJoin(idToken, url string) ([]byte, error) {
 	newSigner, err := client.RequestJoin(idToken, JoinProver, url)
 
@@ -34,8 +37,16 @@ func Sign(message []byte, count int64, signer, gpk []byte) ([]byte, error) {
 	return res, nil
 }
 
-func RequestUpdate(signer, rl, gpk, prover []byte, url string) ([]byte, error) {
-	newSigner, err := client.RequestUpdate(signer, rl, gpk, prover, url)
+func RequestUpdate(signer, rl, gpk []byte, url string) ([]byte, error) {
+	newSigner, err := client.RequestUpdate(signer, rl, gpk, UpdateProver, url)
 
 	return newSigner, err
+}
+
+func FetchGroupPublicKey(url string) ([]byte, error) {
+	return client.FetchGroupPublicKey(url)
+}
+
+func FetchRevocationList(url string) ([]byte, error) {
+	return client.FetchRevocationList(url)
 }
