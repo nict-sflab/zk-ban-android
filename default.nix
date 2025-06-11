@@ -7,7 +7,7 @@ in pkgs.mkShell rec {
     android-studio
     android-tools
     go gomobile
-    jdk
+    jdk gcc
   ];
 
   runScript = "bash";
