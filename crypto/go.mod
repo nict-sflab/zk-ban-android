@@ -1,18 +1,16 @@
 module github.com/akakou/zk-ban-android
 
-go 1.23.3
-
-replace github.com/akakou/zk-ban => ../../zk-ban
+go 1.24.2
 
 replace github.com/akakou/zk-ban-system => ../../zk-ban-system
 
-require (
-	github.com/akakou/zk-ban v0.0.0-00010101000000-000000000000 // indirect
-	github.com/akakou/zk-ban-system v0.0.0-00010101000000-000000000000
-)
+replace github.com/akakou/zk-ban => ../../zk-ban
+
+require github.com/akakou/zk-ban-system v0.0.0-00010101000000-000000000000
 
 require (
 	github.com/akakou/snark-utils v0.0.2 // indirect
+	github.com/akakou/zk-ban v0.0.0-00010101000000-000000000000 // indirect
 	github.com/bits-and-blooms/bitset v1.20.0 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/consensys/bavard v0.1.31-0.20250406004941-2db259e4b582 // indirect
@@ -29,8 +27,11 @@ require (
 	github.com/ronanh/intcomp v1.1.0 // indirect
 	github.com/rs/zerolog v1.33.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
-	golang.org/x/crypto v0.35.0 // indirect
-	golang.org/x/sync v0.11.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/crypto v0.39.0 // indirect
+	golang.org/x/mobile v0.0.0-20250606033058-a2a15c67f36f // indirect
+	golang.org/x/mod v0.25.0 // indirect
+	golang.org/x/sync v0.15.0 // indirect
+	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/tools v0.34.0 // indirect
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
