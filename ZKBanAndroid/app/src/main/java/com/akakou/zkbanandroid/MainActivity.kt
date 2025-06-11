@@ -2,6 +2,7 @@ package com.akakou.zkbanandroid
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,10 +17,19 @@ import com.akakou.proverkit.CredentialViewActivity
 import com.akakou.proverkit.IdentificationUtils
 import com.akakou.proverkit.identification.phone_auth.PhoneNumberAuthActivity
 import com.akakou.zkbanandroid.ui.theme.ZKBanAndroidTheme
+import zkbancrypto.Zkbancrypto
 
 class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
+
+        try {
+            val signer = Zkbancrypto.requestJoin("idToken", "http://localhost:8080/issue-credential")
+            Toast.makeText(this@MainActivity, signer.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            throw e
+        }
+
 
         val utils = IdentificationUtils(this@MainActivity)
         if (utils.hasIdentified()) {

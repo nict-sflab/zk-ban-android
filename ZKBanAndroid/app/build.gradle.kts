@@ -58,6 +58,8 @@ dependencies {
 
     implementation(libs.zxing.android.embedded)
     implementation(files("../../../proverkit-android/app/build/outputs/aar/app-debug.aar"))
+    implementation(files("../../crypto/zk-ban.aar"))
+    implementation(files("../../crypto/zk-ban-sources.jar"))
 
 
     testImplementation(libs.junit)

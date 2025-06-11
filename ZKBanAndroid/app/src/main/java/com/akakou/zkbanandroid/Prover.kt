@@ -1,5 +1,6 @@
 package com.akakou.zkbanandroid
 
+import zkbancrypto.Zkbancrypto
 import android.content.SharedPreferences
 import android.net.Uri
 import com.akakou.proverkit.AbstractProver
@@ -23,6 +24,7 @@ class Prover(uri: Uri, val preference: SharedPreferences): AbstractProver(uri) {
 
     override suspend fun prove(): String {
         preference.edit().putBoolean(tag, true).apply()
+
         return "hi! this is zk-ban! psuedonym ${counter}!"
     }
 }
