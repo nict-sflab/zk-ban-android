@@ -1,7 +1,9 @@
 package com.akakou.zkbanandroid
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,30 +22,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Box
-import com.akakou.proverkit.ProverActivityHelper
+import androidx.core.util.Function
+import kotlin.run
 
 
-class ProverActivity : ComponentActivity() {
+class ProverActivity : com.akakou.proverkit.ProverActivity<Pass>(Prover()) {
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val preference = getSharedPreferences("default", MODE_PRIVATE)
-        manager = ProverManager(preference)
-
-        val helper = ProverActivityHelper(manager!!, this@ProverActivity)
-        val prover = helper.prover as Prover
-
-        if (!prover.needUserCheck()) {
-            helper.passProof()
-        }
-        else {
-            helper.injectableUI = { ProverUI(prover) }
-            helper.setupUI()
-        }
+        setContent { ProverUI{ counter ->
+            super.run(Pass(counter))
+        } }
     }
 }
 
 @Composable
-fun ProverUI(prover: Prover) {
+fun ProverUI(callback: (Int) -> Any) {
     Column(modifier = Modifier.padding(8.dp)) {
         val message = "Which pseudonym do you choose?\n" +
                 "NOTE: If you don't delete the cookies on your browser before,\n" +
@@ -81,7 +75,8 @@ fun ProverUI(prover: Prover) {
                         onClick = {
                             selectedItem = item
                             expanded = false
-                            prover.counter = items.indexOf(item)
+                            val counter = items.indexOf(item)
+                            callback(counter)
                         },
                         text = { Text(text = item) }
                     )
