@@ -9,7 +9,7 @@ import zkbancrypto.Zkbancrypto
 class Prover(): AbstractProver<Pass>() {
     val baseURL = "http://localhost:8080"
 
-    override suspend fun prove(uri: Uri, preferences: SharedPreferences, t: Pass) {
+    override suspend fun prove(uri: String, preferences: SharedPreferences, t: Pass) {
         val gpk = preferences.getString("gpk", "")!!.toByteArray()
         val gpkRaw = java.util.Base64.getDecoder().decode(gpk)
         val credential = preferences.getString("credential", "")!!.toByteArray()
@@ -17,7 +17,7 @@ class Prover(): AbstractProver<Pass>() {
         Log.d("Debug", credential.toString(Charsets.UTF_8))
         Log.d("Debug", gpkRaw.toString(Charsets.UTF_8))
 
-        Zkbancrypto.sign("msg".toByteArray(Charsets.UTF_8) , t.a.toLong(), credential, gpkRaw)
+        Zkbancrypto.sign("msg".toByteArray(Charsets.UTF_8) , t.a.toLong(), credential, gpkRaw, uri)
     }
 
     override suspend fun register(preferences: SharedPreferences) {

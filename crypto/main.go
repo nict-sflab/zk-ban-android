@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 
 	client "github.com/akakou/zk-ban-system/client/signer"
-	coresigner "github.com/akakou/zk-ban-system/core/signer"
 	"github.com/akakou/zk-ban-system/utils"
 )
 
@@ -24,8 +23,8 @@ func RequestJoin(idToken, url string) ([]byte, error) {
 	return newSigner, err
 }
 
-func Sign(message []byte, count int64, signer, gpk []byte) ([]byte, error) {
-	signature, err := coresigner.Sign(message, count, signer, gpk, SignProver)
+func Sign(message []byte, count int64, signer, gpk []byte, url string) ([]byte, error) {
+	signature, err := client.Sign(message, count, signer, gpk, SignProver, url)
 	if err != nil {
 		return nil, err
 	}

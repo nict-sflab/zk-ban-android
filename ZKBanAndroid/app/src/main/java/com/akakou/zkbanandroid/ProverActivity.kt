@@ -29,7 +29,6 @@ import kotlin.run
 class ProverActivity : com.akakou.proverkit.ProverActivity<Pass>(Prover()) {
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.scheme = "http"
         super.onCreate(savedInstanceState)
         setContent { ProverUI{ counter ->
             super.run(Pass(counter))
