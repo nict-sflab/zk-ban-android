@@ -61,6 +61,7 @@ dependencies {
     implementation(files("../../../proverkit-android/app/build/outputs/aar/app-debug.aar"))
     implementation(files("../../crypto/zk-ban.aar"))
     implementation(files("../../crypto/zk-ban-sources.jar"))
+    implementation(libs.androidx.work.runtime.ktx)
 
 
     testImplementation(libs.junit)

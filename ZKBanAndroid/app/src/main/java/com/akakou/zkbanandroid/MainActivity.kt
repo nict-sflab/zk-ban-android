@@ -1,11 +1,19 @@
 package com.akakou.zkbanandroid
 
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.widget.Toast
 import com.akakou.proverkit.identification.phone_auth.PhoneNumberAuthActivity
 import com.akakou.proverkit.LaunchActivity
 
-class Pass(val a: Int)
 
-class MainActivity : LaunchActivity<Pass>(Prover(), PhoneNumberAuthActivity::class.java) {}
+class MainActivity : LaunchActivity<Long>(Prover(), PhoneNumberAuthActivity::class.java) {
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+
+        Toast.makeText(this, "hi", Toast.LENGTH_LONG).show()
+    }
+}
 
 //val signer = Zkbancrypto.requestJoin("idToken", "http://localhost:8080/issue-credential")
 //Toast.makeText(this@MainActivity, signer.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()

@@ -26,12 +26,14 @@ import androidx.core.util.Function
 import kotlin.run
 
 
-class ProverActivity : com.akakou.proverkit.ProverActivity<Pass>(Prover()) {
+class ProverActivity : com.akakou.proverkit.ProverActivity<Long>(Prover()) {
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        UpdateWorker.run(context=this)
+
         setContent { ProverUI{ counter ->
-            super.run(Pass(counter))
+            super.run(counter.toLong())
         } }
     }
 }
