@@ -6,25 +6,17 @@ import (
 
 	client "github.com/akakou/zk-ban-system/client/signer"
 	"github.com/akakou/zk-ban-system/utils"
+	_ "golang.org/x/mobile/bind"
 )
 
-//go:embed join_prover.json
-var JoinProver []byte
-
-//go:embed sign_prover.json
-var SignProver []byte
-
-//go:embed update_prover.json
-var UpdateProver []byte
-
 func RequestJoin(idToken, url string) ([]byte, error) {
-	newSigner, err := client.RequestJoin(idToken, JoinProver, url)
+	newSigner, err := client.RequestJoin(idToken, url)
 
 	return newSigner, err
 }
 
 func Sign(message []byte, count int64, signer, gpk []byte, url string) ([]byte, error) {
-	signature, err := client.Sign(message, count, signer, gpk, SignProver, url)
+	signature, err := client.Sign(message, count, signer, gpk, url)
 	if err != nil {
 		return nil, err
 	}
@@ -38,8 +30,7 @@ func Sign(message []byte, count int64, signer, gpk []byte, url string) ([]byte, 
 }
 
 func RequestUpdate(signer, rl, gpk []byte, url string) ([]byte, error) {
-	newSigner, err := client.RequestUpdate(signer, rl, gpk, UpdateProver, url)
-
+	newSigner, err := client.RequestUpdate(signer, rl, gpk, url)
 	return newSigner, err
 }
 
@@ -47,8 +38,8 @@ func FetchGroupPublicKey(url string) ([]byte, error) {
 	return client.FetchGroupPublicKey(url)
 }
 
-func FetchRevocationList(url string) ([]byte, error) {
-	return client.FetchRevocationList(url)
+func FetchRevocationList(signer []byte, url string) ([]byte, error) {
+	return client.FetchRevocationList(signer, url)
 }
 
 func SetConstantPeriodForDebug(i int) {
