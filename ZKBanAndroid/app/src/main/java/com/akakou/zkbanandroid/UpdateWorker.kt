@@ -16,7 +16,7 @@ class UpdateWorker(val appContext: Context, params: WorkerParameters) : Coroutin
     params
 ) {
     companion object {
-        var debug: Long = 2
+        var debug: Long = 1
         fun run(context: Context) {
             val hour = (0..24).random()
 
@@ -32,13 +32,17 @@ class UpdateWorker(val appContext: Context, params: WorkerParameters) : Coroutin
     }
 
     override suspend fun doWork(): Result {
-        Zkbancrypto.setConstantPeriodForDebug(debug)
         Log.d("debug", "${UpdateWorker.debug}")
         val prover = Prover()
         try {
+            debug ++
+            Zkbancrypto.setConstantPeriodForDebug(debug)
+
             prover.update(appContext)
-            debug += 1
         } catch (e: Exception){
+            debug --
+            Zkbancrypto.setConstantPeriodForDebug(debug)
+
             Log.d("zk-ban", e.message.toString())
         }
 
