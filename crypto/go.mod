@@ -8,13 +8,18 @@ replace github.com/akakou/zk-ban => ../../zk-ban
 
 replace github.com/akakou/gnark-precomputes => ../../gnark-precomputes
 
+replace github.com/akakou/gnark-serializable => ../../gnark-serializable
+
 replace github.com/akakou/zk-ban-system/dump => ../../zk-ban-system/dump
 
-require github.com/akakou/zk-ban-system v0.0.0-00010101000000-000000000000
+require (
+	github.com/akakou/zk-ban-system v0.0.0-00010101000000-000000000000
+	golang.org/x/mobile v0.0.0-20250606033058-a2a15c67f36f
+)
 
 require (
 	github.com/akakou/gnark-precomputes v0.0.0-00010101000000-000000000000 // indirect
-	github.com/akakou/snark-utils v0.0.2 // indirect
+	github.com/akakou/gnark-serializable v0.0.0-00010101000000-000000000000 // indirect
 	github.com/akakou/zk-ban v0.0.0-00010101000000-000000000000 // indirect
 	github.com/akakou/zk-ban-system/dump v0.0.0-00010101000000-000000000000 // indirect
 	github.com/bits-and-blooms/bitset v1.22.0 // indirect
@@ -32,7 +37,6 @@ require (
 	github.com/rs/zerolog v1.34.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	golang.org/x/crypto v0.39.0 // indirect
-	golang.org/x/mobile v0.0.0-20250606033058-a2a15c67f36f // indirect
 	golang.org/x/mod v0.25.0 // indirect
 	golang.org/x/sync v0.15.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect

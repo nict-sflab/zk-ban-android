@@ -47,5 +47,5 @@ func SetConstantPeriodForDebug(i int) {
 		return int64(i)
 	}
 
-	utils.Today = today
+	utils.Period = today
 }
