@@ -77,7 +77,7 @@ fun ProverUI(callback: (Int) -> Any) {
                         onClick = {
                             selectedItem = item
                             expanded = false
-                            val counter = items.indexOf(item)
+                            val counter = items.indexOf(item) + 1
                             callback(counter)
                         },
                         text = { Text(text = item) }
