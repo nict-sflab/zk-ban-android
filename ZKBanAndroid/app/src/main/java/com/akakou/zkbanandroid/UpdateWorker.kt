@@ -18,7 +18,8 @@ class UpdateWorker(val appContext: Context, params: WorkerParameters) : Coroutin
     companion object {
         var debug: Long = 1
         fun run(context: Context) {
-            val hour = (0..24).random()
+            val hour = (0..30).random()
+//            val hour = (0..24).random()
 
             val workManager = WorkManager.getInstance(context)
             val workRequest = OneTimeWorkRequestBuilder<UpdateWorker>()
@@ -36,13 +37,9 @@ class UpdateWorker(val appContext: Context, params: WorkerParameters) : Coroutin
         val prover = Prover()
         try {
             debug ++
-            Zkbancrypto.setConstantPeriodForDebug(debug)
-
             prover.update(appContext)
         } catch (e: Exception){
             debug --
-            Zkbancrypto.setConstantPeriodForDebug(debug)
-
             Log.d("zk-ban", e.message.toString())
         }
 

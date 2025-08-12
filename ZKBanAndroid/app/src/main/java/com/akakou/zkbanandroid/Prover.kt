@@ -6,10 +6,10 @@ import com.akakou.proverkit.AbstractProver
 import zkbancrypto.Zkbancrypto
 
 class Prover(): AbstractProver<Long>() {
-    val baseURL = "http://192.168.137.1:8080"
+    val baseURL = "http://10.165.148.200:8080"
+//    val baseURL = "http://192.168.137.1:8080"
 
     override suspend fun register(context: Context) {
-        Zkbancrypto.setConstantPeriodForDebug(1.toLong())
         val preferences = context.getSharedPreferences("default", Context.MODE_PRIVATE)
         val idToken = preferences.getString("idToken", "")!!.toByteArray()
 
