@@ -55,7 +55,7 @@ fun ProverUI(callback: (Int) -> Any) {
         )
 
         var expanded by remember { mutableStateOf(false) }
-        val items = listOf("Taro Pseudonym 1 (Default)", "Jiro Pseudonym 2", "Saburo Pseudonym 3")
+        val items = listOf("Taro Pseudonym 1 (Default)", "Jiro Pseudonym 2")
         var selectedItem by remember { mutableStateOf(items[1]) }
 
         Box(modifier = Modifier.fillMaxWidth()) {
