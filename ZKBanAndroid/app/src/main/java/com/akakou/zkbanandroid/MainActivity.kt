@@ -3,15 +3,15 @@ package com.akakou.zkbanandroid
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.akakou.proverkit.identification.phone_auth.PhoneNumberAuthActivity
 import com.akakou.proverkit.LaunchActivity
+import zkbancrypto.Zkbancrypto
 
 
 class MainActivity : LaunchActivity<Long>(Prover(), PhoneNumberAuthActivity::class.java) {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-
-        Toast.makeText(this, "hi", Toast.LENGTH_LONG).show()
     }
 }
 
