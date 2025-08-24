@@ -22,18 +22,18 @@ sh build.sh
 ```
 
 ### 3. App Setting & Build
-#### 3.a Open this project with Android Studio
+#### 3a. Open this project with Android Studio
 
 ```
 android-studio .
 ```
 
 
-#### 3.b Set up dependencies
+#### 3b. Set up dependencies
 
 Fix the path of the dependencies (in paticular, proverkit).
 
-#### 3b. Debug App
+#### 3c. Debug App
 
 Push the debug button.
 
