@@ -21,7 +21,6 @@ require (
 	github.com/akakou/gnark-precomputes v0.0.0-00010101000000-000000000000 // indirect
 	github.com/akakou/gnark-serializable v0.0.0-00010101000000-000000000000 // indirect
 	github.com/akakou/zk-ban v0.0.0-00010101000000-000000000000 // indirect
-	github.com/akakou/zk-ban-system/dump v0.0.0-00010101000000-000000000000 // indirect
 	github.com/bits-and-blooms/bitset v1.22.0 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/consensys/gnark v0.13.0 // indirect
@@ -37,7 +36,7 @@ require (
 	github.com/rs/zerolog v1.34.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	golang.org/x/crypto v0.40.0 // indirect
-	golang.org/x/mod v0.25.0 // indirect
+	golang.org/x/mod v0.26.0 // indirect
 	golang.org/x/sync v0.16.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 	golang.org/x/tools v0.34.0 // indirect
