@@ -1,7 +1,11 @@
 package com.akakou.zkbanandroid
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -30,6 +34,11 @@ class ProverActivity : com.akakou.proverkit.ProverActivity<Long>(Prover()) {
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val basePath = Environment.getExternalStorageDirectory()
+        val path = basePath.path + "/zk-ban/"
+        zkbancrypto.Zkbancrypto.setPath(path)
+
         UpdateWorker.run(context=this)
 
         setContent { ProverUI{ counter ->
