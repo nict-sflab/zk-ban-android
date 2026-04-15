@@ -4,7 +4,7 @@ let
   };
 
   androidComposition = pkgs.androidenv.composeAndroidPackages {
-    platformVersions = [ "35" ];
+    platformVersions = [ "36" ];
     includeNDK = true;
   };
 in
