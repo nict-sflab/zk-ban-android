@@ -1,45 +1,34 @@
 package com.akakou.zkbanandroid
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.PersistableBundle
+import android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.akakou.proverkit.identification.phone_auth.PhoneNumberAuthActivity
 import com.akakou.proverkit.LaunchActivity
 
-
-class MainActivity : LaunchActivity<Long>(Prover(), PhoneNumberAuthActivity::class.java) {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
-        Toast.makeText(this, "hi", Toast.LENGTH_LONG).show()
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        if (!Environment.isExternalStorageManager()) {
+            val intent = Intent(
+                ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                Uri.parse("package:${this.packageName}")
+            )
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            this.startActivity(intent)
+        } else {
+           val intent = Intent(this.application, RegisterActivity::class.java)
+           startActivity(intent)
+        }
     }
 }
-
-//val signer = Zkbancrypto.requestJoin("idToken", "http://localhost:8080/issue-credential")
-//Toast.makeText(this@MainActivity, signer.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
-//
-//val gpk = Zkbancrypto.fetchGroupPublicKey("http://localhost:8080/group-public-key")
-//Toast.makeText(this@MainActivity, gpk.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
-//
-//val signature = Zkbancrypto.sign("msg".toByteArray(Charsets.UTF_8) , 1, signer, gpk)
-//Toast.makeText(this@MainActivity, signature.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
-//
-//val rl = Zkbancrypto.fetchRevocationList("http://localhost:8080/revocation-list")
-//Toast.makeText(this@MainActivity, rl.toString(Charsets.UTF_8), Toast.LENGTH_SHORT).show()
-//
-//
-//val url = "http://localhost:8000/verify"
-//    .toUri()
-//    .buildUpon()
-//    .appendQueryParameter("signature", signature.toString(Charsets.UTF_8))
-//    .build()
-//
-//val intent = Intent(Intent.ACTION_VIEW, url)
-//startActivity(intent)
-//
-//
-//Zkbancrypto.setConstantPeriodForDebug(10)
-//Thread.sleep(5000)
-//
-//val update = Zkbancrypto.requestUpdate(signer, rl, gpk, "http://localhost:8080/update-credential" )
-//Toast.makeText(this@MainActivity, update.toString(Charsets.UTF_8), Toast.LENGTH_LONG).show()
