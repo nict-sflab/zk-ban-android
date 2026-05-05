@@ -7,11 +7,18 @@ import (
 	client "github.com/akakou/zk-ban-system/client/signer"
 	"github.com/akakou/zk-ban-system/utils"
 	"github.com/akakou/zk-ban/dump"
+	"github.com/akakou/zk-ban/load"
 	_ "golang.org/x/mobile/bind"
 )
 
 func SetPath(path string) {
 	dump.KeyPath = path
+}
+
+func ImportKeys() {
+	load.ReDumpUserKey("", "join")
+	load.ReDumpUserKey("", "sign")
+	load.ReDumpUserKey("sample", "update")
 }
 
 func RequestJoin(idToken, url string) ([]byte, error) {
