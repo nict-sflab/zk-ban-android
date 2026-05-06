@@ -11,17 +11,20 @@ import com.akakou.proverkit.AbstractProver
 import zkbancrypto.Zkbancrypto
 
 class Prover(): AbstractProver<Long>() {
-    val gmURLBase   = "http://10.59.140.14:8080"
-    val verifierURL = "http://10.59.140.14:8000/verify"
+    val gmURLBase   = "http://10.130.166.96:18080"
+    val verifierURL = "http://10.130.166.96:18000/verify"
 
     suspend fun setupPath(context: Context) {
         val basePath = Environment.getExternalStorageDirectory()
         val path = basePath.path + "/zk-ban/"
-        zkbancrypto.Zkbancrypto.setPath(path)
+        Zkbancrypto.setPath(path)
     }
 
     override suspend fun register(context: Context) {
         setupPath(context)
+
+        Zkbancrypto.importKeys()
+
         val preferences = context.getSharedPreferences("default", Context.MODE_PRIVATE)
         val idToken = preferences.getString("idToken", "")!!.toByteArray()
 
