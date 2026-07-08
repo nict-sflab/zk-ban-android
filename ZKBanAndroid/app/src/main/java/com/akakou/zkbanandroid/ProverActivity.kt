@@ -38,8 +38,9 @@ class ProverActivity : com.akakou.proverkit.ProverActivity<Long>(Prover()) {
         val basePath = Environment.getExternalStorageDirectory()
         val path = basePath.path + "/zk-ban/"
         zkbancrypto.Zkbancrypto.setPath(path)
+        zkbancrypto.Zkbancrypto.setPeriodUnit(120000000000)
 
-        UpdateWorker.run(context=this)
+//        UpdateWorker.run(context=this)
 
         setContent { ProverUI{ counter ->
             super.run(counter.toLong())
