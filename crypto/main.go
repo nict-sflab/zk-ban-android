@@ -2,7 +2,7 @@ package zkbancrypto
 
 import (
 	_ "embed"
-	"fmt"
+	"time"
 
 	client "github.com/akakou/zk-ban-system/client/signer"
 	"github.com/akakou/zk-ban-system/utils"
@@ -15,6 +15,14 @@ func SetPath(path string) {
 	dump.KeyPath = path
 }
 
+func SetPeriodUnit(unit int64) {
+	utils.PeriodUnit = time.Duration(unit)
+}
+
+func GetPeriod() int64 {
+	return utils.Period()
+}
+
 func ImportKeys() {
 	load.ReDumpUserKey("", "join")
 	load.ReDumpUserKey("", "sign")
@@ -22,8 +30,6 @@ func ImportKeys() {
 }
 
 func RequestJoin(idToken, url string) ([]byte, error) {
-	utils.PeriodUnit = utils.HalfMinutes
-	fmt.Printf("Period: %v\n", utils.Period())
 	return client.RequestJoin(idToken, url)
 }
 
@@ -32,7 +38,6 @@ func Sign(message []byte, count int64, signer, gpk []byte, url string) ([]byte, 
 }
 
 func RequestUpdate(signer, rl, gpk []byte, url string) ([]byte, error) {
-	utils.PeriodUnit = utils.HalfMinutes
 	return client.RequestUpdate(signer, rl, gpk, url)
 }
 
